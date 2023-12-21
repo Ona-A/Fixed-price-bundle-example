@@ -1,0 +1,52 @@
+<script>
+  document.getElementById('addToCart').addEventListener('click', async () => {
+    const bundleProductData = {
+      variantId: '43003746287792',
+      productId: '7434396074160',
+      sellingPlan: 1648951472
+    }
+
+    const bundle = {
+      "externalVariantId": bundleProductData.variantId,
+      "externalProductId": bundleProductData.productId,
+      "selections": [
+        {
+          "collectionId": "289580187824",
+          "externalProductId": "7169188200624",
+          "externalVariantId": "41919590138032",
+          "quantity": 2
+        }
+      ]
+    };
+
+    console.log("Bundle Configuration:", await recharge.cdn.getCDNBundleSettings(7434396074160));
+    console.log("Bundle Object:", bundle);
+
+    try {
+      const rbId = await recharge.bundle.getBundleId(bundle);
+
+      const cartData = {
+        items: [{
+          id: bundleProductData.variantId,
+          quantity: 1,
+          selling_plan: bundleProductData.sellingPlan,
+          properties: { content: "2x Streaky bacon", _rb_id: rbId },
+        }]
+      };
+
+      const response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cartData),
+      });
+
+      const responseData = await response.json();
+      console.log("Cart Add Response:", responseData);
+
+      // Redirect to the cart after adding the item
+      window.location.href = '/cart';
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  });
+</script>
