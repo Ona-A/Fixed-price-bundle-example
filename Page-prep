@@ -1,0 +1,26 @@
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <h1>Recharge SDK Bundle Test</h1>
+  <div class="rte">
+        {{ page.content }}
+    <h6>In this example, we are going to add 2 packages of Bacon to start the bundles subscription, <br>
+         after their firts purchase they can then use the Customer Portal to change their bundle contents.
+<br>
+      This is a simple example showing how you could use the SDK to create selections for a fixed-price Bundle.
+<br><br>
+Important: <br>Please remember that fixed-price Bundles will get their items extracted on the checkout order 
+      <br> and they need the _rb_id attribute to exist in the cart line item properties.
+
+
+       </h6>
+       </div>
+        <div >
+    <img
+      class="aff-img"
+      src="https://cdn.shopify.com/s/files/1/0610/2276/5232/products/streakybacon_1024x1024@2x.png?v=1661188334"
+    />
+  </div>
+      
+        <button id="addToCart">Click to start your bundle subscription</button>
